@@ -4,10 +4,13 @@ import schedule
 import time
 from datetime import datetime
 
-# Your function to be scheduled
+# Shared state to trigger updates
+if 'message' not in st.session_state:
+    st.session_state.message = ""
+
+# Function to update shared state
 def my_scheduled_function():
-    st.write(f"Function is running: {datetime.now()}")
-    # Add your function logic here
+    st.session_state.message = f"Function ran at: {datetime.now()}"
 
 # Function to run the scheduler
 def run_scheduler():
@@ -27,5 +30,5 @@ if 'scheduler_thread' not in st.session_state:
 st.title("My Streamlit App with Scheduler")
 st.write("The function will run every day at 08:00 AM")
 
-# Additional app content
-st.write("This is the main content of the app.")
+# Display the latest message
+st.write(st.session_state.message)
