@@ -16,7 +16,7 @@ def run_scheduler():
         time.sleep(1)
 
 # Schedule your function to run every day at a specific time
-schedule.every().day.at("08:00").do(my_scheduled_function)
+schedule.every(5).seconds.do(my_scheduled_function)
 
 # Start the scheduler in a separate thread
 scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
